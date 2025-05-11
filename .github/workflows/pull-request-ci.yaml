@@ -107,11 +107,23 @@ jobs:
         uses: ./
         with:
           prompt: |
-            Go to https://mazrean.com/ and check for anything unnatural.
-            Report your results in Markdown format.
+            Go to https://mazrean.com/ using Playwright and check for any irregularities.
 
-            When checking, pay particular attention to the following points
-            - Make all page transitions.
+            # Reporting notes 
+            Please note the following
+            - Report in Markdown format.
+            - Report the following items
+                - Incident location
+                - Problem
+                    - Be specific.
+                    - Briefly
+                - Reason for the problem
+                - Severity
+            - Please try to make your report easy to understand.
+
+            # Points to keep in mind when checking 
+            Please keep the following points in mind when checking.
+            - Perform all page transitions.
             - If there are input forms, etc., check the input and validation behavior.
             - Check all button click behavior.
             - Pay particular attention to display corruption.
