@@ -1,26 +1,11 @@
-import globals from "globals";
-import typescriptPlugin from "@typescript-eslint/eslint-plugin";
-import prettierRecommendedPlugin from "eslint-plugin-prettier/recommended";
+// @ts-check
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+import prettierPlugin from "eslint-config-prettier";
 
 export default [
-  {
-    languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
-
-      ecmaVersion: 5,
-      sourceType: "module",
-
-      parserOptions: {
-        parser: "@typescript-eslint/parser",
-      },
-    },
-
-    rules: {
-      "no-debugger": "warn",
-    },
-  },
-  typescriptPlugin.configs.recommended,
-  prettierRecommendedPlugin,
+  { ignores: ["dist/**", "node_modules/**"] },
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
+  prettierPlugin,
 ];

@@ -1,5 +1,4 @@
 import * as core from "@actions/core";
-import * as fs from "fs";
 import { z } from "zod";
 
 const InputSchema = z.object({
