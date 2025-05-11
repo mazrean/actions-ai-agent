@@ -48,6 +48,8 @@ export async function createMCPClient(
  * @returns An agent with MCP server tools
  */
 export async function createMCPAgent(inputs: ActionInputs, mcp: MCPClient) {
+  const tools = await mcp.getTools();
+  console.log(tools);
   return new Agent({
     name: "MCP Agent",
     instructions: `
@@ -67,7 +69,7 @@ export async function createMCPAgent(inputs: ActionInputs, mcp: MCPClient) {
     })(inputs.model, {
       maxTokens: inputs.maxTokens,
     }),
-    tools: await mcp.getTools(),
+    tools: tools,
     memory: new Memory({
       storage: new LibSQLStore({
         url: `file:${inputs.memoryDbFile}`,
