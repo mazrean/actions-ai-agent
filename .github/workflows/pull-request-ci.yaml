@@ -118,10 +118,26 @@ jobs:
             memory-db-${{ github.ref }}
             memory-db-
       - name: AI Agent action
+        id: ai-agent
         uses: ./
         with:
-          prompt: "What is the capital of the moon?"
+          prompt: |
+            Go to https://mazrean.com/ and check for anything unnatural.
+            Report your results in Markdown format.
+
+            When checking, pay particular attention to the following points
+            - Make all page transitions.
+            - If there are input forms, etc., check the input and validation behavior.
+            - Check all button click behavior.
+            - Pay particular attention to display corruption.
           model: "openai/gpt-4.1"
-          system-prompt: "You are a helpful assistant"
+          system-prompt: |
+            You are a Quality Assurance (QA) specialist.
+            You are adept at identifying areas of unusual behavior from web pages and finding bugs.
+            You are able to identify, without prejudice, any discomfort that users may experience when using the site.
+            We can then accurately prioritize the issues we find based on the severity of their impact on the user's experience.
           mcp-config-file: ".ai-actions/mcp.json"
           memory-db-file: ".ai-actions/memory.db"
+      - name: Check AI Agent action
+        run: |
+          echo "${{ steps.ai-agent.outputs.response }}" >> $GITHUB_STEP_SUMMARY
