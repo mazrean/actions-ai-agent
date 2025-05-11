@@ -85,7 +85,11 @@ export class GitHubModelsChatLanguageModel implements LanguageModelV1 {
     });
 
     if (!response.ok) {
-      throw new Error(`GitHub Models API error: ${response.statusText}`);
+      throw new Error(
+        `GitHub Models API error: ${
+          response.statusText
+        } ${await response.text()}`
+      );
     }
 
     const data = (await response.json()) as GitHubModelsResponse;
