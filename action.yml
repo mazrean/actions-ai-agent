@@ -1,0 +1,9 @@
+name: 'AI Agent'
+description: 'Execute GitHub Models API with MCP Tools'
+author: 'mazrean'
+branding:
+  icon: 'battery-charging'
+  color: 'blue'
+runs:
+  using: 'node20'
+  main: 'dist/index.mjs'

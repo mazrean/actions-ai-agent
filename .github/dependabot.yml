@@ -1,0 +1,40 @@
+version: 2
+updates:
+  # パッケージの依存関係を管理
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: saturday
+      time: "00:00"
+      timezone: "Asia/Tokyo"
+    versioning-strategy: "increase"
+    labels:
+      - "dependencies"
+      - "npm"
+    reviewers:
+      - "mazrean"
+    groups:
+      types:
+        patterns:
+          - '@types/*'
+      formatter:
+        patterns:
+          - '*eslint*'
+          - '*prettier*'
+      patches:
+        update-types:
+          - 'patch'
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: saturday
+      time: "00:00"
+      timezone: "Asia/Tokyo"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    reviewers:
+      - "mazrean"
