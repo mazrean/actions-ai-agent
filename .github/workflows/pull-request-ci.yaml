@@ -102,12 +102,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: ./pnpm-lock.yaml
+      - name: pnpm install
+        run: pnpm install
+      - name: Install playwright
+        run: pnpm dlx playwright install
       - name: AI Agent action
         id: ai-agent
         uses: ./
         with:
           prompt: |
-            Go to https://mazrean.com/ using Playwright and check for any irregularities.
+            Go to https://mazrean.com/ using Playwright MCP and check for any irregularities.
 
             # Reporting notes 
             Please note the following
