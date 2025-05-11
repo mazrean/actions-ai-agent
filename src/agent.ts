@@ -65,7 +65,7 @@ export async function createMCPAgent(inputs: ActionInputs, configs: MCPConfig) {
     tools: await mcp.getTools(),
     memory: new Memory({
       storage: new LibSQLStore({
-        url: ":memory:",
+        url: `file:${inputs.memoryDbFile}`,
       }),
       options: {
         lastMessages: 10,

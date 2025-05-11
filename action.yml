@@ -32,6 +32,10 @@ inputs:
     description: The MCP config file to use
     required: false
     default: './.ai-actions/mcp.json'
+  memory-db-file:
+    description: The memory db file to use
+    required: false
+    default: './.ai-actions/memory.db'
   timeout:
     description: The timeout for the model
     required: false
@@ -39,7 +43,30 @@ inputs:
 outputs:
   response:
     description: The response from the model
+    value: ${{ steps.run.outputs.response }}
 
 runs:
-  using: 'node20'
-  main: 'dist/index.mjs'
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@v2
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --omit=dev
+      working-directory: ${{ github.action_path }}
+    - name: Run AI Agent
+      id: run
+      shell: bash
+      env:
+        PROMPT: ${{ inputs.prompt }}
+        MODEL: ${{ inputs.model }}
+        BASE_URL: ${{ inputs.base-url }}
+        SYSTEM_PROMPT: ${{ inputs.system-prompt }}
+        MAX_TOKENS: ${{ inputs.max-tokens }}
+        TOKEN: ${{ inputs.token }}
+        MCP_CONFIG_FILE: ${{ inputs.mcp-config-file }}
+        MEMORY_DB_FILE: ${{ inputs.memory-db-file }}
+        TIMEOUT: ${{ inputs.timeout }}
+      run: node ${{ github.action_path }}/dist/index.mjs
