@@ -43,7 +43,19 @@ inputs:
 outputs:
   response:
     description: The response from the model
+    value: ${{ steps.response.outputs.response }}
 
 runs:
-  using: 'node20'
-  main: 'dist/index.mjs'
+  using: 'composite'
+  steps:
+    - uses: pnpm/action-setup@v4
+    - uses: 'actions/setup-node@v4'
+      with:
+        node-version: '22'
+        cache: pnpm
+    - run: pnpm install
+      shell: bash
+    - run: node dist/index.mjs
+      id: response
+      shell: bash
+
