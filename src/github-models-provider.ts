@@ -68,12 +68,7 @@ export class GitHubModelsChatLanguageModel implements LanguageModelV1 {
         ...this.headers(),
       },
       body: JSON.stringify({
-        messages: [
-          {
-            role: "user",
-            content: options.prompt,
-          },
-        ],
+        messages: options.prompt,
         model: this.modelId,
         temperature: this.settings.temperature,
         max_tokens: this.settings.maxTokens,
@@ -123,12 +118,7 @@ export class GitHubModelsChatLanguageModel implements LanguageModelV1 {
         ...this.headers(),
       },
       body: JSON.stringify({
-        messages: [
-          {
-            role: "user",
-            content: options.prompt,
-          },
-        ],
+        messages: options.prompt,
         model: this.modelId,
         temperature: this.settings.temperature,
         max_tokens: this.settings.maxTokens,
