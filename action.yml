@@ -54,7 +54,7 @@ runs:
         node-version: '22'
     - name: Install dependencies
       shell: bash
-      run: pnpm install --prod --reporter=append-only --log-level=error
+      run: pnpm install --prod --reporter=append-only --loglevel=error
       working-directory: ${{ github.action_path }}
     - name: Run AI Agent
       id: run
