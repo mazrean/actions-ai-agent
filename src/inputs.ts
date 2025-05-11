@@ -9,7 +9,6 @@ const InputSchema = z.object({
   maxTokens: z.number().int().positive(),
   token: z.string().min(1),
   mcpConfigFile: z.string(),
-  memoryDbFile: z.string(),
   timeout: z.number().int().positive().optional(),
 });
 
@@ -23,7 +22,6 @@ export function getInputs(): ActionInputs {
   const maxTokens = parseInt(core.getInput("max-tokens"));
   const token = core.getInput("token") ?? process.env.GITHUB_TOKEN;
   const mcpConfigFile = core.getInput("mcp-config-file");
-  const memoryDbFile = core.getInput("memory-db-file");
   const strTimeout = core.getInput("timeout");
   const timeout = strTimeout ? parseInt(strTimeout) : undefined;
 
@@ -35,7 +33,6 @@ export function getInputs(): ActionInputs {
     maxTokens,
     token,
     mcpConfigFile,
-    memoryDbFile,
     timeout,
   };
 

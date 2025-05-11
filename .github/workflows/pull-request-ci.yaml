@@ -102,14 +102,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Memory DB
-        uses: actions/cache@v4
-        with:
-          path: .ai-actions/memory.db
-          key: |
-            memory-db-${{ github.ref }}-${{ github.sha }}
-            memory-db-${{ github.ref }}
-            memory-db-
       - name: AI Agent action
         id: ai-agent
         uses: ./
@@ -130,7 +122,6 @@ jobs:
             You are able to identify, without prejudice, any discomfort that users may experience when using the site.
             We can then accurately prioritize the issues we find based on the severity of their impact on the user's experience.
           mcp-config-file: ".ai-actions/mcp.json"
-          memory-db-file: ".ai-actions/memory.db"
       - name: Check AI Agent action
         run: |
           echo "${{ steps.ai-agent.outputs.response }}" >> $GITHUB_STEP_SUMMARY

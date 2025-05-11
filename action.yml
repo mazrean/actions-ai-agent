@@ -32,10 +32,6 @@ inputs:
     description: The MCP config file to use
     required: false
     default: './.ai-actions/mcp.json'
-  memory-db-file:
-    description: The memory db file to use
-    required: false
-    default: './.ai-actions/memory.db'
   timeout:
     description: The timeout for the model
     required: false
@@ -43,19 +39,7 @@ inputs:
 outputs:
   response:
     description: The response from the model
-    value: ${{ steps.response.outputs.response }}
 
 runs:
-  using: 'composite'
-  steps:
-    - uses: pnpm/action-setup@v4
-    - uses: 'actions/setup-node@v4'
-      with:
-        node-version: '22'
-        cache: pnpm
-    - run: pnpm install
-      shell: bash
-    - run: node dist/index.mjs
-      id: response
-      shell: bash
-
+  using: 'node20'
+  main: 'dist/index.mjs'
