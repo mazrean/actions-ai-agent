@@ -1,23 +1,8 @@
 import globals from "globals";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
+import typescriptPlugin from "@typescript-eslint/eslint-plugin";
+import prettierRecommendedPlugin from "eslint-plugin-prettier/recommended";
 
 export default [
-  ...compat.extends(
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-  ),
   {
     languageOptions: {
       globals: {
@@ -36,4 +21,6 @@ export default [
       "no-debugger": "warn",
     },
   },
+  typescriptPlugin.configs.recommended,
+  prettierRecommendedPlugin,
 ];
