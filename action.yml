@@ -4,6 +4,46 @@ author: 'mazrean'
 branding:
   icon: 'battery-charging'
   color: 'blue'
+inputs:
+  prompt:
+    description: The prompt for the model
+    required: true
+  model:
+    description: The model to use
+    required: false
+    default: 'openai/gpt-4.1'
+  base-url:
+    description: The base url to use
+    required: false
+    default: 'https://models.github.ai'
+  system-prompt:
+    description: The system prompt for the model
+    required: false
+    default: 'You are a helpful assistant'
+  max-tokens:
+    description: The maximum number of tokens to generate
+    required: false
+    default: '4000'
+  token:
+    description: The token to use
+    required: false
+    default: ${{ github.token }}
+  mcp-config-file:
+    description: The MCP config file to use
+    required: false
+    default: './.ai-actions/mcp.json'
+  memory-db-file:
+    description: The memory db file to use
+    required: false
+    default: './.ai-actions/memory.db'
+  timeout:
+    description: The timeout for the model
+    required: false
+
+outputs:
+  response:
+    description: The response from the model
+
 runs:
   using: 'node20'
   main: 'dist/index.mjs'

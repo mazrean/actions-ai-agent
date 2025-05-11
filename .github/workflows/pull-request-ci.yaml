@@ -102,5 +102,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: pnpm
+          cache-dependency-path: ./pnpm-lock.yaml
+      - run: pnpm install
+      - name: Setup Memory DB
+        uses: actions/cache@v4
+        with:
+          path: .ai-actions/memory.db
+          key: |
+            memory-db-${{ github.ref }}-${{ github.sha }}
+            memory-db-${{ github.ref }}
+            memory-db-
       - name: AI Agent action
         uses: ./
+        with:
+          prompt: "What is the capital of the moon?"
+          model: "openai/gpt-4.1"
+          system-prompt: "You are a helpful assistant"
+          mcp-config-file: ".ai-actions/mcp.json"
+          memory-db-file: ".ai-actions/memory.db"
