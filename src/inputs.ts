@@ -24,7 +24,8 @@ export function getInputs(): ActionInputs {
   const token = core.getInput("token") ?? process.env.GITHUB_TOKEN;
   const mcpConfigFile = core.getInput("mcp-config-file");
   const memoryDbFile = core.getInput("memory-db-file");
-  const timeout = parseInt(core.getInput("timeout"));
+  const strTimeout = core.getInput("timeout");
+  const timeout = strTimeout ? parseInt(strTimeout) : undefined;
 
   const inputs = {
     prompt,
