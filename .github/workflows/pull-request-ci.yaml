@@ -119,22 +119,21 @@ jobs:
         uses: ./
         with:
           prompt: |
-            Go to https://mazrean.com/ using Playwright MCP and check for any irregularities.
+            Go to https://mazrean.com/ using Playwright and check for any irregularities.
+            Report your results in Markdown format.
 
             # Reporting notes 
             Please note the following
             - Report in Markdown format.
-            - Report the following items
-                - Incident location
+            - Report everything you did.
+            - Please report the following items about the problem
+                - Location of the problem
                 - Problem
-                    - Be specific.
-                    - Briefly
                 - Reason for the problem
                 - Severity
-            - Please try to make your report easy to understand.
 
-            # Points to keep in mind when checking 
-            Please keep the following points in mind when checking.
+            # Notes on checking 
+            Please note the following points when checking.
             - Perform all page transitions.
             - If there are input forms, etc., check the input and validation behavior.
             - Check all button click behavior.
