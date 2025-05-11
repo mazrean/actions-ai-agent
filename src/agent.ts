@@ -31,18 +31,23 @@ function createMCPServers(configs: MCPConfig) {
   );
 }
 
+export async function createMCPClient(
+  inputs: ActionInputs,
+  configs: MCPConfig
+) {
+  const mcpServers = createMCPServers(configs);
+  return new MCPClient({
+    servers: mcpServers,
+    timeout: inputs.timeout,
+  });
+}
+
 /**
  * Creates an agent with MCP server tools
  * @param configs The MCP server configurations
  * @returns An agent with MCP server tools
  */
-export async function createMCPAgent(inputs: ActionInputs, configs: MCPConfig) {
-  const mcpServers = createMCPServers(configs);
-  const mcp = new MCPClient({
-    servers: mcpServers,
-    timeout: inputs.timeout,
-  });
-
+export async function createMCPAgent(inputs: ActionInputs, mcp: MCPClient) {
   return new Agent({
     name: "MCP Agent",
     instructions: `

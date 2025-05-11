@@ -1,9 +1,11 @@
 import core from "@actions/core";
 import { getInputs } from "./inputs";
 import { loadMCPConfigs } from "./mcp-config";
-import { createMCPAgent } from "./agent";
+import { createMCPAgent, createMCPClient } from "./agent";
+import { MCPClient } from "@mastra/mcp";
 
 async function main() {
+  let mcpClient: MCPClient | undefined;
   try {
     // Get inputs from GitHub Actions
     const inputs = getInputs();
@@ -14,7 +16,8 @@ async function main() {
     core.info("Successfully loaded MCP configurations");
 
     // Create and run the agent
-    const agent = await createMCPAgent(inputs, mcpConfigs);
+    mcpClient = await createMCPClient(inputs, mcpConfigs);
+    const agent = await createMCPAgent(inputs, mcpClient);
     core.info("Successfully created agent");
 
     // Execute the prompt
@@ -42,6 +45,10 @@ async function main() {
     const err = error as Error;
     core.error(`Failed to run: ${error}, ${err.stack}`);
     core.setFailed(err.message);
+  } finally {
+    if (mcpClient) {
+      await mcpClient.disconnect();
+    }
   }
 }
 
