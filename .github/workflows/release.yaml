@@ -17,7 +17,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Update the ${{ env.TAG_NAME }} tag
         uses: actions/publish-action@v0.3.0
         with:
