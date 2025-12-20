@@ -7,8 +7,12 @@ import prettierPlugin from "eslint-config-prettier";
 export default [
   {
     ignores: ["dist/**", "node_modules/**"],
-    globals: {
-      ...globals.node,
+  },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
     },
   },
   eslint.configs.recommended,
