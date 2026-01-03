@@ -30,8 +30,8 @@ importers:
         specifier: ^0.24.9
         version: 0.24.9(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76)
       '@mastra/libsql':
-        specifier: ^0.0.3
-        version: 0.0.3(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76)
+        specifier: ^0.16.4
+        version: 0.16.4(@mastra/core@0.24.9(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76))
       '@mastra/mcp':
         specifier: ^0.14.5
         version: 0.14.5(@mastra/core@0.24.9(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76))(@types/json-schema@7.0.15)(hono@4.11.3)(zod@3.25.76)
@@ -724,8 +724,10 @@ packages:
     peerDependencies:
       zod: ^3.0.0
 
-  '@mastra/libsql@0.0.3':
-    resolution: {integrity: sha512-Q3aE2Tp1DLCTUWnDTY/DJbr7OwwAaEpnc2YVRgbw0WTQNEFtCMhiMWr2DPYlLRFV03X3oPtho+xPkwELnbhw+w==}
+  '@mastra/libsql@0.16.4':
+    resolution: {integrity: sha512-IwPZipHBlamNAdnQRpwOxw1AeQsY7QaOBpJN+VbHz8tf819zGZkDOLKsh2eWLMmnQdyqc8hucGCA8HTnejtkkA==}
+    peerDependencies:
+      '@mastra/core': '>=0.21.2-0 <0.25.0-0'
 
   '@mastra/mcp@0.14.5':
     resolution: {integrity: sha512-PNVLzD9XY2zs9fRnYOSGz1nf9hKlDU9dYo+EMJVy15wLdx9ZW72j0iuv4m3Aicdp5Y61l5LPSDPbDTSlO2Y3CA==}
@@ -4856,30 +4858,13 @@ snapshots:
       - valibot
       - zod-openapi
 
-  '@mastra/libsql@0.0.3(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76)':
+  '@mastra/libsql@0.16.4(@mastra/core@0.24.9(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76))':
     dependencies:
       '@libsql/client': 0.15.15
-      '@mastra/core': 0.9.4(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76)
+      '@mastra/core': 0.24.9(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76)
     transitivePeerDependencies:
-      - '@hono/arktype-validator'
-      - '@hono/effect-validator'
-      - '@hono/typebox-validator'
-      - '@hono/valibot-validator'
-      - '@hono/zod-validator'
-      - '@sinclair/typebox'
-      - '@valibot/to-json-schema'
-      - arktype
-      - aws-crt
       - bufferutil
-      - effect
-      - encoding
-      - openapi-types
-      - react
-      - supports-color
       - utf-8-validate
-      - valibot
-      - zod
-      - zod-openapi
 
   '@mastra/mcp@0.14.5(@mastra/core@0.24.9(openapi-types@12.1.3)(react@19.1.0)(zod@3.25.76))(@types/json-schema@7.0.15)(hono@4.11.3)(zod@3.25.76)':
     dependencies:
