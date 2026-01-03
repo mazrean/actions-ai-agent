@@ -70,6 +70,7 @@ export async function createMCPAgent(inputs: ActionInputs, mcp: MCPClient) {
       maxTokens: inputs.maxTokens,
     }),
     tools: tools,
+    // @ts-expect-error - Type incompatibility between @mastra/memory@0.3.3 and @mastra/core@0.24.9
     memory: new Memory({
       storage: new LibSQLStore({
         url: `file:${inputs.memoryDbFile}`,
