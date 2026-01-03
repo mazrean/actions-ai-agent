@@ -1,4 +1,5 @@
 import { Agent } from "@mastra/core/agent";
+import { MastraMemory } from "@mastra/core/memory";
 import { Memory } from "@mastra/memory";
 import { LibSQLStore } from "@mastra/libsql";
 import { MCPClient } from "@mastra/mcp";
@@ -81,6 +82,6 @@ export async function createMCPAgent(inputs: ActionInputs, mcp: MCPClient) {
           generateTitle: false,
         },
       },
-    }),
+    }) as unknown as MastraMemory,
   });
 }

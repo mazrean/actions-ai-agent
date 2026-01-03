@@ -9,11 +9,12 @@
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
-    "lib": ["esnext"],
+    "lib": ["ES2021"],
+    "types": ["node"],
     "skipLibCheck": true,
     "noEmit": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["node_modules/@types", "src/types"],
+    "typeRoots": ["node_modules/@types", "src/types"]
   }
 }

@@ -31,10 +31,7 @@ async function main() {
           role: "user",
           content: inputs.prompt,
         },
-      ],
-      {
-        maxTokens: inputs.maxTokens,
-      }
+      ]
     );
     core.info("Successfully executed prompt");
 
