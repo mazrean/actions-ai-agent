@@ -33,7 +33,9 @@ async function main() {
         },
       ],
       {
-        maxTokens: inputs.maxTokens,
+        modelSettings: {
+          maxOutputTokens: inputs.maxTokens,
+        },
       }
     );
     core.info("Successfully executed prompt");

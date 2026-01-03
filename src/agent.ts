@@ -1,6 +1,4 @@
 import { Agent } from "@mastra/core/agent";
-import { Memory } from "@mastra/memory";
-import { LibSQLStore } from "@mastra/libsql";
 import { MCPClient } from "@mastra/mcp";
 import { MCPConfig } from "./mcp-config";
 import { createGitHubModelsProvider } from "./github-models-provider";
@@ -70,17 +68,5 @@ export async function createMCPAgent(inputs: ActionInputs, mcp: MCPClient) {
       maxTokens: inputs.maxTokens,
     }),
     tools: tools,
-    memory: new Memory({
-      storage: new LibSQLStore({
-        url: `file:${inputs.memoryDbFile}`,
-      }),
-      options: {
-        lastMessages: 10,
-        semanticRecall: false,
-        threads: {
-          generateTitle: false,
-        },
-      },
-    }),
   });
 }
